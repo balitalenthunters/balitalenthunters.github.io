@@ -283,6 +283,19 @@ body { font-family: Montserrat, Inter, ui-sans-serif, -apple-system, "Segoe UI",
   pointer-events: none;
 }
 .card.is-locked:hover { transform: none; box-shadow: none; border-color: var(--border); }
+.card.is-ghost { cursor: pointer; }
+.card.is-ghost .ghost-match { position: absolute; top: 16px; right: 18px; width: 38px; height: 14px; border-radius: 999px; background: #E4DDD2; }
+.card.is-ghost .ghost-top { display: flex; gap: 14px; align-items: flex-start; }
+.card.is-ghost .ghost-logo { width: 44px; height: 44px; border-radius: 10px; background: #E4DDD2; flex-shrink: 0; }
+.card.is-ghost .ghost-copy { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 6px 52px 0 0; }
+.card.is-ghost .ghost-copy span { display: block; height: 12px; border-radius: 6px; background: #E4DDD2; }
+.card.is-ghost .ghost-copy span:first-child { width: 74%; height: 16px; }
+.card.is-ghost .ghost-copy span:last-child { width: 42%; }
+.card.is-ghost .ghost-line { height: 12px; border-radius: 6px; background: #E4DDD2; margin-top: 12px; }
+.card.is-ghost .ghost-line.short { width: 58%; }
+.card.is-ghost:nth-child(3n) .ghost-copy span:first-child { width: 61%; }
+.card.is-ghost:nth-child(3n+1) .ghost-line.short { width: 44%; }
+
 .unlock {
   grid-column: 1 / -1;
   margin: 6px 0 2px;
@@ -483,7 +496,7 @@ body { font-family: Montserrat, Inter, ui-sans-serif, -apple-system, "Segoe UI",
 <section class="section" id="best"><h2 class="section-title">Best matches</h2><p class="section-sub">The closest open roles.</p><div class="grid"><div class="card is-free" data-track="best" data-geo="local" data-lang="en" data-ind="other" data-level="mid" data-posted="2026-09-08" data-type="inhouse" style="--card-accent:#CBEF1F">
       <div class="match">84%</div>
       <div class="open-flag">One of the roles for you</div>
-      <div class="card-top"><div class="logo">•</div><div>
+      <div class="card-top"><div class="logo">🎨</div><div>
         <div class="card-title">Project Manager (Interior Contractor)</div>
         <div class="card-company">Cassa Design · Greenlake City, Jakarta Barat</div>
       </div></div>
@@ -504,7 +517,7 @@ body { font-family: Montserrat, Inter, ui-sans-serif, -apple-system, "Segoe UI",
         <div class="unlock-kicker"><span id="more-count">16</span> roles matched to your CV</div>
         <p>Not sure which roles fit your experience, or whether you should apply? We&#x27;ve already done that.</p>
         <button type="button" class="unlock-btn" id="open-more">Open more roles</button>
-      </div></div></div></section>
+      </div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div></div></section>
 <footer class="brand-foot"><img src="mark.png" alt=""><div>
   <div class="brand-foot-name">Bali <span>Talent Hunters</span></div>
   <p>You will find your best job with our team.</p>
@@ -537,6 +550,7 @@ const gate = document.getElementById('gate');
 function openGate(){ gate.hidden = false; document.body.style.overflow = 'hidden'; }
 function closeGate(){ gate.hidden = true; document.body.style.overflow = ''; }
 document.getElementById('open-more').addEventListener('click', openGate);
+document.querySelectorAll('.card.is-ghost').forEach(el => el.addEventListener('click', openGate));
 document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeGate));
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !gate.hidden) closeGate(); });
 document.querySelectorAll('[data-f]').forEach(btn => {

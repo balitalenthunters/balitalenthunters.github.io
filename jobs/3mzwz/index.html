@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roles · Fajar · Bali Talent Hunters</title>
+<link rel="icon" href="mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --white: #ffffff;
+  --bg: #F6F1E8;
+  --text: #141414;
+  --text2: #3A3832;
+  --muted: #6E6A62;
+  --border: #E6DFD4;
+  --lime: #CBEF1F;
+  --lime-deep: #B6D90F;
+  --forest: #1E2C1A;
+  --ink: #141414;
+  --cream: #F6F1E8;
+  --pink: #E7F5A8;
+  --pink2: #CBEF1F;
+  --pink3: #1E2C1A;
+  --pink-deep: #141414;
+  --pink-bg: #F4F8D4;
+  --blue: #1E2C1A;
+  --blue-bg: #EEF2E4;
+  --green: #1E2C1A;
+  --green-bg: #F4F8D4;
+  --orange: #8A5A12;
+  --orange-bg: #F8EBD4;
+  --purple: #3D4A32;
+  --purple-bg: #EEF2E4;
+  --red: #8E2F24;
+  --shadow: 0 10px 28px rgba(30,44,26,.08), 0 2px 6px rgba(20,20,20,.04);
+  --radius: 18px;
+  --radius-sm: 12px;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+.shell { max-width: 1060px; margin: 0 auto; padding: 0 24px 80px; }
+.hero { background: #fff; }
+.hero-inner { padding: 36px 0 8px; }
+.kicker { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--pink3); }
+.hero-name { font-size: 40px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.1; margin-top: 8px; }
+.hero-sub { font-size: 18px; font-weight: 600; margin-top: 10px; }
+.hero-links { margin-top: 10px; font-size: 13.5px; color: var(--muted); }
+.hero-links span { color: #cfcbc4; margin: 0 8px; }
+.live-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 20px;
+  background: var(--pink-bg);
+  border: 1px solid #c9e4de;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px; color: var(--pink-deep); font-weight: 500;
+}
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pink3); }
+.toc-wrap {
+  position: fixed; right: 10px; top: 50%; transform: translateY(-50%);
+  z-index: 80; padding: 16px 6px;
+}
+.toc-wrap::before { content: ''; position: absolute; right: 0; top: -8px; bottom: -8px; width: 36px; }
+.toc-wrap:hover::before { width: 300px; }
+.toc-dots { display: flex; flex-direction: column; gap: 9px; align-items: flex-end; }
+.toc-dot { width: 12px; height: 2px; border-radius: 1px; background: #d3d1cb; transition: width .15s, background .15s; }
+.toc-dot.active { width: 18px; background: #37352f; }
+.toc {
+  position: absolute; right: 28px; top: 50%; transform: translateY(-50%) translateX(8px);
+  width: 240px; background: #fff; border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(15,15,15,.12), 0 0 0 1px rgba(55,53,47,.08);
+  padding: 8px; opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .12s, transform .12s, visibility .12s;
+}
+.toc-wrap:hover .toc, .toc-wrap:focus-within .toc {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(-50%) translateX(0);
+}
+.toc a { display: block; font-size: 13px; color: var(--muted); padding: 6px 10px; border-radius: 6px; line-height: 1.35; }
+.toc a:hover { background: #f7f6f3; color: var(--text); }
+.toc a.active { background: #f1f1ef; color: var(--blue); font-weight: 500; }
+.filters {
+  display: flex; flex-direction: column; gap: 8px;
+  margin: 28px 0 8px; padding: 16px 0;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
+}
+.filter-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.filter-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .6px; color: var(--muted); width: 92px; flex-shrink: 0;
+}
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 12.5px; color: var(--text2); font-weight: 500;
+  cursor: pointer; transition: all .15s; user-select: none;
+}
+.pill:hover { border-color: var(--pink3); color: var(--pink-deep); }
+.pill.active { background: var(--text); border-color: var(--text); color: #fff; }
+.pill-cnt {
+  background: rgba(255,255,255,.2); border-radius: 10px;
+  padding: 0 6px; font-size: 11px; font-weight: 700; min-width: 18px; text-align: center;
+}
+.pill:not(.active) .pill-cnt { background: #f1f1ef; color: var(--muted); }
+.results-bar { font-size: 13px; color: var(--muted); margin: 18px 0 8px; }
+.results-bar strong { color: var(--text); }
+.section { margin: 36px 0 48px; scroll-margin-top: 220px; }
+.section.hidden { display: none; }
+.section-title { font-size: 24px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 6px; }
+.section-sub { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+.review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.review-card {
+  background: #fafafa; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px;
+}
+.review-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.review-card p, .review-card li { font-size: 13.5px; color: var(--text2); line-height: 1.6; }
+.review-card ul { padding-left: 16px; }
+.review-card.yes { background: #f4fbf8; border-color: #cde8df; }
+.review-card.warn { background: #fffaf2; border-color: #f3e2c4; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 16px; }
+.card {
+  background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px 22px 18px; display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  transition: box-shadow .2s, transform .2s, border-color .2s;
+}
+.card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--card-accent, var(--pink3));
+}
+.card:hover { box-shadow: var(--shadow); transform: translateY(-1px); border-color: #d5e6e2; }
+.card.hidden { display: none; }
+.card-top { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; padding-right: 48px; }
+.logo {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; background: var(--pink-bg); flex-shrink: 0;
+}
+.card-title { font-size: 16px; font-weight: 700; line-height: 1.3; }
+.card-company { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.match { position: absolute; top: 16px; right: 18px; font-size: 12px; font-weight: 700; color: var(--green); }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.tag { border-radius: 6px; padding: 2px 9px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+.tag-remote { background: var(--green-bg); color: var(--green); }
+.tag-office { background: var(--orange-bg); color: var(--orange); }
+.tag-level-h { background: var(--pink-bg); color: var(--pink-deep); }
+.tag-level-l { background: var(--purple-bg); color: var(--purple); }
+.tag-level-m { background: var(--blue-bg); color: var(--blue); }
+.tag-ind { background: #f7f6f3; color: var(--text2); }
+.tag-warn { background: var(--orange-bg); color: var(--orange); }
+.tag-bali { background: var(--pink-bg); color: var(--pink-deep); }
+.tag-inhouse { background: var(--green-bg); color: var(--green); }
+.location { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; }
+.desc { font-size: 13.5px; color: var(--text2); line-height: 1.65; margin-bottom: 12px; }
+.desc strong { color: var(--text); }
+.contacts-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .6px; color: var(--muted); margin-bottom: 6px;
+}
+.contacts { background: #fafafa; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; margin-bottom: 12px; }
+.contact-row { font-size: 12.5px; color: var(--text2); line-height: 1.55; margin-top: 2px; }
+.contact-row a { color: var(--blue); font-weight: 500; }
+.contact-row a:hover { text-decoration: underline; }
+.card-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 12px; border-top: 1px solid #f1f1ef; gap: 10px; margin-top: auto;
+}
+.post-date { font-size: 12px; color: var(--muted); }
+.btn {
+  display: inline-flex; align-items: center;
+  background: var(--pink3); color: #fff;
+  border-radius: 10px; padding: 8px 16px;
+  font-size: 13px; font-weight: 600;
+}
+.btn:hover { opacity: .88; }
+.sources-group-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted); margin: 22px 0 10px;
+}
+.sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.source-card {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 14px 16px; background: #fafafa;
+  border-radius: 12px; border: 1px solid var(--border);
+}
+.source-card:hover { border-color: var(--pink2); }
+.source-name { font-size: 13px; font-weight: 600; }
+.source-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.no-results { display: none; text-align: center; padding: 64px 20px; color: var(--muted); }
+.no-results.show { display: block; }
+@media (max-width: 980px) {
+  .toc-wrap { display: none; }
+  .grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .hero-name { font-size: 32px; }
+  .review-grid { grid-template-columns: 1fr; }
+  .filter-label { width: auto; }
+}
+
+.hero-note { margin-top: 14px; max-width: 640px; font-size: 14.5px; line-height: 1.5; color: var(--text2); }
+.fit { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.fit p { font-size: 13.5px; color: var(--text2); line-height: 1.55; margin: 0; }
+.fit strong { color: var(--text); font-weight: 600; }
+.apply-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.apply-kind { font-size: 11px; color: var(--muted); text-align: right; line-height: 1.3; }
+
+.brand { display: inline-flex; align-items: center; margin-bottom: 18px; }
+.brand img { height: 48px; width: auto; display: block; }
+body { font-family: Montserrat, Inter, ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); }
+.hero { background: transparent; }
+.match { background: var(--lime); color: var(--ink); border-radius: 999px; padding: 2px 8px; line-height: 1.45; }
+.btn { background: var(--forest); color: #fff; }
+.btn:hover { background: var(--lime); color: var(--ink); opacity: 1; }
+.pill.active { background: var(--ink); border-color: var(--ink); color: var(--lime); }
+.pill:hover { border-color: var(--ink); color: var(--ink); }
+.pill:not(.active) .pill-cnt { background: #EFE8DC; color: var(--muted); }
+.filters { background: rgba(246,241,232,.94); }
+.card:hover { border-color: #D7E39A; }
+.card::after { background: var(--lime); }
+.live-badge { background: var(--lime); border-color: #DCEB73; color: var(--ink); }
+.dot { background: var(--ink); }
+.hero-name { letter-spacing: -1.4px; }
+.tag-ind { background: #F3EEE6; }
+.contacts { background: #FBF8F3; }
+.brand-foot {
+  margin-top: 28px; background: var(--forest); color: #F6F1E8;
+  border-radius: 20px; padding: 26px 28px;
+  display: flex; align-items: center; gap: 16px;
+}
+.brand-foot img { height: 46px; width: 46px; display: block; }
+.brand-foot-name { font-weight: 800; font-size: 20px; letter-spacing: -.4px; color: #F6F1E8; line-height: 1.1; }
+.brand-foot-name span { color: var(--lime); }
+.brand-foot p { font-size: 14px; color: #E4EFE0; margin-top: 4px; }
+@media (max-width: 720px) {
+  .brand img { height: 36px; }
+  .brand-foot { align-items: flex-start; }
+}
+
+.job-reach a { color: var(--forest); font-weight: 600; }
+.brand-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; }
+.brand-links a { color: var(--lime); font-size: 14px; font-weight: 700; }
+.brand-links a:hover { text-decoration: underline; }
+
+.card.is-free {
+  grid-column: 1 / -1;
+  border: 1.5px solid #CBEF1F;
+  box-shadow: 0 22px 50px rgba(30,44,26,.12);
+}
+.open-flag {
+  display: inline-flex;
+  width: fit-content;
+  margin: -4px 0 14px;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+.card.is-locked { position: relative; }
+.card.is-locked > * {
+  filter: blur(6px);
+  opacity: .72;
+  user-select: none;
+  pointer-events: none;
+}
+.card.is-locked:hover { transform: none; box-shadow: none; border-color: var(--border); }
+.card.is-ghost { cursor: pointer; }
+.card.is-ghost .ghost-match { position: absolute; top: 16px; right: 18px; width: 38px; height: 14px; border-radius: 999px; background: #E4DDD2; }
+.card.is-ghost .ghost-top { display: flex; gap: 14px; align-items: flex-start; }
+.card.is-ghost .ghost-logo { width: 44px; height: 44px; border-radius: 10px; background: #E4DDD2; flex-shrink: 0; }
+.card.is-ghost .ghost-copy { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 6px 52px 0 0; }
+.card.is-ghost .ghost-copy span { display: block; height: 12px; border-radius: 6px; background: #E4DDD2; }
+.card.is-ghost .ghost-copy span:first-child { width: 74%; height: 16px; }
+.card.is-ghost .ghost-copy span:last-child { width: 42%; }
+.card.is-ghost .ghost-line { height: 12px; border-radius: 6px; background: #E4DDD2; margin-top: 12px; }
+.card.is-ghost .ghost-line.short { width: 58%; }
+.card.is-ghost:nth-child(3n) .ghost-copy span:first-child { width: 61%; }
+.card.is-ghost:nth-child(3n+1) .ghost-line.short { width: 44%; }
+
+.unlock {
+  grid-column: 1 / -1;
+  margin: 6px 0 2px;
+  z-index: 5;
+}
+.unlock-card {
+  background: #fff;
+  border: 1px solid #E6DFD4;
+  border-radius: 24px;
+  padding: 32px 28px 26px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(20,20,20,.08);
+}
+.unlock-kicker {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+.unlock-card h3 {
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -.7px;
+  margin: 14px 0 8px;
+}
+.unlock-card p { max-width: 460px; margin: 0 auto; color: var(--text2); font-size: 15.5px; }
+.unlock-btn {
+  margin-top: 18px;
+  background: var(--ink);
+  color: var(--lime);
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 22px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.unlock-btn:hover { background: var(--forest); }
+.gate { position: fixed; inset: 0; z-index: 120; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.gate[hidden] { display: none; }
+.gate-backdrop { position: absolute; inset: 0; background: rgba(20,20,20,.5); backdrop-filter: blur(8px); }
+.gate-card {
+  position: relative;
+  width: min(520px, 100%);
+  background: #fff;
+  border-radius: 28px;
+  padding: 22px 36px 28px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.22);
+}
+.gate-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 28px; right: 28px; height: 4px;
+  background: var(--lime);
+  border-radius: 0 0 6px 6px;
+}
+.gate-logo { height: 40px; width: auto; display: block; margin: 8px auto 26px; }
+.gate-card h2 { font-size: 32px; line-height: 1.12; letter-spacing: -.8px; margin: 10px 0 12px; }
+.gate-card > p { color: var(--text2); font-size: 16px; }
+.gate-points { list-style: none; margin: 18px 0 22px; display: flex; flex-direction: column; gap: 8px; }
+.gate-points li { font-size: 14.5px; font-weight: 600; padding-left: 22px; position: relative; }
+.gate-points li::before { content: ''; position: absolute; left: 0; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--lime); }
+.gate-go {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  background: var(--ink); color: var(--lime);
+  border-radius: 14px; padding: 14px 18px;
+  font-size: 16px; font-weight: 700;
+}
+.gate-go:hover { background: var(--forest); }
+.gate-note { margin-top: 10px; text-align: center; font-size: 12.5px; color: var(--muted); }
+.gate-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0;
+}
+.gate-close svg { width: 16px; height: 16px; display: block; }
+.gate-close:hover { background: var(--lime-deep); }
+@media (max-width: 720px) {
+  .unlock-card h3, .gate-card h2 { font-size: 26px; }
+  .gate-card { padding: 28px 20px 22px; }
+}
+
+.lang-switch { position: fixed; top: 16px; right: 16px; z-index: 70; }
+.lang-current {
+  display: flex; align-items: center; gap: 8px;
+  background: #fff; border: 1px solid #E6DFD4; border-radius: 999px;
+  padding: 5px 12px 5px 5px;
+  font: inherit; font-size: 13px; font-weight: 700; color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(30,44,26,.1);
+}
+.lang-flag {
+  width: 20px; height: 20px; border-radius: 50%;
+  flex-shrink: 0; display: inline-block;
+  background-size: cover; background-position: center;
+  box-shadow: inset 0 0 0 1px rgba(20,20,20,.15);
+}
+.lang-flag[data-flag="us"] { background-image: url("https://flagcdn.com/w80/us.png"); }
+.lang-flag[data-flag="id"] { background-image: url("https://flagcdn.com/w80/id.png"); }
+.lang-flag[data-flag="ru"] { background-image: url("https://flagcdn.com/w80/ru.png"); }
+.lang-menu {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  min-width: 210px;
+  background: #fff; border: 1px solid #E6DFD4; border-radius: 16px;
+  padding: 6px; box-shadow: 0 16px 40px rgba(20,20,20,.12);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.lang-menu[hidden] { display: none; }
+.lang-menu button {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; border: 0; background: transparent; border-radius: 12px;
+  padding: 8px 10px; font: inherit; font-size: 13px; font-weight: 700;
+  color: var(--ink); cursor: pointer; text-align: left;
+}
+.lang-menu button:hover { background: #F6F1E8; }
+@media (max-width: 720px) {
+  .lang-switch { top: 10px; right: 10px; }
+  .lang-current { font-size: 12px; }
+}
+
+.lang-flag { width:20px; height:20px; border-radius:50%; background-size:cover; background-position:center; display:inline-block; }
+.lang-flag[data-flag="us"] { background-image:url(https://flagcdn.com/w80/us.png); }
+.lang-flag[data-flag="id"] { background-image:url(https://flagcdn.com/w80/id.png); }
+.lang-flag[data-flag="ru"] { background-image:url(https://flagcdn.com/w80/ru.png); }
+</style>
+</head>
+<body data-person="fajar" data-lang="id">
+<div class="lang-switch">
+  <button type="button" class="lang-current" id="lang-current" aria-expanded="false">
+    <span class="lang-flag" data-flag="id"></span><span class="lang-label">Bahasa Indonesia</span>
+  </button>
+  <div class="lang-menu" hidden></div>
+</div>
+<div class="shell">
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <a class="brand" href="#top" aria-label="Bali Talent Hunters"><img src="logo.png" alt="Bali Talent Hunters"></a>
+    <div class="hero-name">Fajar</div>
+    <div class="hero-sub">Senior Management and Project Professional with 25+ years of experience, including 20+ years in telecommunications and 4+ years in property/real estate.</div>
+    <div class="hero-links">
+      Lives in Cileungsi, Bogor
+      <span>|</span>
+      SACME delivery lead, 25+ years
+      <span>|</span>
+      Telecom towers, fiber, construction, and commercial
+    </div>
+    <p class="hero-note">Best matches first, then the same skills in a different industry, then a step up, down, or into a different profession.</p>
+    <div class="live-badge"><div class="dot"></div>Updated 22 October 2026</div>
+  </div>
+</header>
+<div class="filters">
+  <div class="filter-row"><span class="filter-label">Where</span>
+    <button class="pill active" data-f="geo" data-v="all">All <span class="pill-cnt" id="m-all">50</span></button>
+    <button class="pill" data-f="geo" data-v="local">Office in Jabodetabek <span class="pill-cnt" id="m-local">39</span></button>
+    <button class="pill" data-f="geo" data-v="relocate">Office, relocation <span class="pill-cnt" id="m-relocate">11</span></button>
+    <button class="pill" data-f="geo" data-v="remote">Remote <span class="pill-cnt" id="m-remote">0</span></button>
+  </div>
+  <div class="filter-row"><span class="filter-label">Fit</span>
+    <button class="pill active" data-f="track" data-v="all">All <span class="pill-cnt" id="m-track-all">50</span></button>
+    <button class="pill" data-f="track" data-v="best">Best matches <span class="pill-cnt" id="m-best">18</span></button>
+    <button class="pill" data-f="track" data-v="alt">Alternatives <span class="pill-cnt" id="m-alt">22</span></button>
+    <button class="pill" data-f="track" data-v="move">Career moves <span class="pill-cnt" id="m-move">10</span></button>
+  </div>
+  <div class="filter-row"><span class="filter-label">Field</span>
+    <button class="pill active" data-f="ind" data-v="all">All</button>
+    <button class="pill" data-f="ind" data-v="sales">Sales</button><button class="pill" data-f="ind" data-v="office">Office</button><button class="pill" data-f="ind" data-v="ops">Operations</button><button class="pill" data-f="ind" data-v="engineering">Engineering</button>
+  </div>
+  <div class="filter-row"><span class="filter-label">Level</span>
+    <button class="pill active" data-f="level" data-v="all">All</button>
+    <button class="pill" data-f="level" data-v="staff">Staff</button><button class="pill" data-f="level" data-v="mid">Mid-level</button><button class="pill" data-f="level" data-v="lead">Lead</button>
+  </div>
+  <div class="filter-row"><span class="filter-label">Posted</span>
+    <button class="pill active" data-f="posted" data-v="all">All</button>
+    <button class="pill" data-f="posted" data-v="7d">Last 7 days</button>
+    <button class="pill" data-f="posted" data-v="30d">Last 30 days</button>
+    <button class="pill" data-f="posted" data-v="older">Older</button>
+  </div>
+</div>
+<div class="results-bar">Roles in view: <strong id="total">1</strong></div>
+<section class="section" id="best"><h2 class="section-title">Best matches</h2><p class="section-sub">The closest open roles.</p><div class="grid"><div class="card is-free" data-track="best" data-geo="local" data-lang="en" data-ind="sales" data-level="lead" data-posted="2026-09-24" data-type="inhouse" style="--card-accent:#CBEF1F">
+      <div class="match">88%</div>
+      <div class="open-flag">One of the roles for you</div>
+      <div class="card-top"><div class="logo">📈</div><div>
+        <div class="card-title">Senior Manager Sales - Tower Provider</div>
+        <div class="card-company">PT Gihon Telekomunikasi Indonesia · South Tangerang, Banten</div>
+      </div></div>
+      <div class="tags"><span class="tag tag-bali">Office</span><span class="tag tag-level-l">Lead</span><span class="tag tag-warn">Salary not listed</span></div>
+      <div class="location">South Tangerang, Banten</div>
+      <div class="fit"><p><strong>Fits.</strong> At Era Bangun you sold fiber and wholesale, and you still deliver B2S and colocation sites.</p>
+      <p><strong>Does not match.</strong> This seat leads a national tower-leasing sales team, and your current title is Lead Project Manager.</p>
+      <p><strong>How close.</strong> The products are tower leasing, colocation, fiber, and ISP, and the office is in South Tangerang.</p>
+      <p><strong>Next step.</strong> Apply on JobStreet. The ad stays open until 24 October 2026.</p></div>
+      <div class="contacts"><div class="contacts-label">Contacts</div>
+        <div class="contact-row">🏢 <a class="link-company" href="https://id.jobstreet.com/id/job/94850609" target="_blank">JobStreet</a></div>
+      </div>
+      <div class="card-foot"><span class="post-date">24 September 2026 · checked 22 Oct</span>
+        <div class="apply-wrap"><a href="https://id.jobstreet.com/id/job/94850609" target="_blank" class="btn">Apply →</a><span class="apply-kind">Opens JobStreet</span></div>
+      </div>
+    </div><div class="unlock"><div class="unlock-card">
+        <div class="unlock-kicker">Roles matched to your CV: <span id="more-count">49</span></div>
+        <p>Not sure which roles fit your experience, or whether you should apply? We&#x27;ve already done that.</p>
+        <button type="button" class="unlock-btn" id="open-more">Open more roles</button>
+      </div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div><div class="card is-locked is-ghost" aria-hidden="true"><div class="ghost-match"></div><div class="ghost-top"><div class="ghost-logo"></div><div class="ghost-copy"><span></span><span></span></div></div><div class="ghost-line"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div></div></section>
+<footer class="brand-foot"><img src="mark.png" alt=""><div>
+  <div class="brand-foot-name">Bali <span>Talent Hunters</span></div>
+  <p>You will find your best job with our team.</p>
+  <div class="brand-links">
+    <a href="https://wa.me/6288740556189" target="_blank">WhatsApp +62 887 4055 6189</a>
+    <a href="https://www.instagram.com/bali_talent_hunters" target="_blank">Instagram</a>
+    <a href="https://huntersbali.net/" target="_blank">huntersbali.net</a>
+  </div>
+</div></footer>
+</div>
+
+<div class="gate" id="gate" hidden>
+  <div class="gate-backdrop" data-close></div>
+  <div class="gate-card" role="dialog" aria-modal="true" aria-label="Bali Talent Hunters">
+    <img class="gate-logo" src="logo.png" alt="Bali Talent Hunters">
+    <ul class="gate-points">
+      <li>We put our full experience into reading your CV</li>
+      <li>We went through your background, role by role</li>
+      <li>We worked out what your skills actually cover</li>
+      <li>We kept only the roles that are still open</li>
+      <li>We sorted them into your city, a relocation, or remote</li>
+      <li>We noted what fits, and where to apply, on each one</li>
+    </ul>
+    <a class="gate-go" href="https://wa.me/6288740556189" target="_blank" rel="noopener">Get new roles before other candidates do</a>
+    <button type="button" class="gate-close" data-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+  </div>
+</div>
+<script>
+const gate = document.getElementById('gate');
+function openGate(){ gate.hidden = false; document.body.style.overflow = 'hidden'; }
+function closeGate(){ gate.hidden = true; document.body.style.overflow = ''; }
+document.getElementById('open-more').addEventListener('click', openGate);
+document.querySelectorAll('.card.is-ghost').forEach(el => el.addEventListener('click', openGate));
+document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeGate));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !gate.hidden) closeGate(); });
+document.querySelectorAll('[data-f]').forEach(btn => {
+  btn.addEventListener('click', () => { if (!btn.classList.contains('active')) openGate(); });
+});
+</script>
+
+<script type="application/json" id="i18n-dict">{
+"Lives in Cileungsi, Bogor": {
+"en": "Lives in Cileungsi, Bogor",
+"id": "Tinggal di Cileungsi, Bogor",
+"ru": "Живёт в Чилеунгси, Богор"
+},
+"SACME delivery lead, 25+ years": {
+"en": "SACME delivery lead, 25+ years",
+"id": "Pimpinan pengerjaan SACME, 25+ tahun",
+"ru": "Руководитель сдачи SACME, 25+ лет"
+},
+"Telecom towers, fiber, construction, and commercial": {
+"en": "Telecom towers, fiber, construction, and commercial",
+"id": "Menara telekomunikasi, fiber, konstruksi, dan komersial",
+"ru": "Телеком-вышки, fiber, стройка и коммерция"
+},
+"Sales": {
+"en": "Sales",
+"id": "Penjualan",
+"ru": "Продажи"
+},
+"Office": {
+"en": "Office",
+"id": "Kantor",
+"ru": "Офис"
+},
+"Operations": {
+"en": "Operations",
+"id": "Operasional",
+"ru": "Операции"
+},
+"Engineering": {
+"en": "Engineering",
+"id": "Teknik",
+"ru": "Инженерия"
+},
+"Staff": {
+"en": "Staff",
+"id": "Staf",
+"ru": "Линейный"
+},
+"Mid-level": {
+"en": "Mid-level",
+"id": "Menengah",
+"ru": "Средний"
+},
+"Lead": {
+"en": "Lead",
+"id": "Pimpinan",
+"ru": "Руководящий"
+},
+"Best matches first, then the same skills in a different industry, then a step up, down, or into a different profession.": {
+"en": "Best matches first, then the same skills in a different industry, then a step up, down, or into a different profession.",
+"id": "Yang paling cocok dulu, lalu skill yang sama di industri lain, lalu naik level, turun level, atau pindah profesi.",
+"ru": "Сначала лучшие совпадения, потом те же навыки в другой отрасли, потом шаг выше, ниже или в другую профессию."
+},
+"Updated 22 October 2026": {
+"en": "Updated 22 October 2026",
+"id": "Diperbarui 22 Oktober 2026",
+"ru": "Обновлено 22 октября 2026"
+},
+"Where": {
+"en": "Where",
+"id": "Tempat",
+"ru": "Где"
+},
+"All": {
+"en": "All",
+"id": "Semua",
+"ru": "Все"
+},
+"Office in Jabodetabek": {
+"en": "Office in Jabodetabek",
+"id": "Kantor di Jabodetabek",
+"ru": "Офис в Джабодетабеке"
+},
+"Office, relocation": {
+"en": "Office, relocation",
+"id": "Kantor, pindah",
+"ru": "Офис с переездом"
+},
+"Remote": {
+"en": "Remote",
+"id": "Jarak jauh",
+"ru": "Удалённо"
+},
+"Fit": {
+"en": "Fit",
+"id": "Kecocokan",
+"ru": "Совпадение"
+},
+"Best matches": {
+"en": "Best matches",
+"id": "Paling cocok",
+"ru": "Лучшие совпадения"
+},
+"Alternatives": {
+"en": "Alternatives",
+"id": "Alternatif",
+"ru": "Смежные роли"
+},
+"Career moves": {
+"en": "Career moves",
+"id": "Langkah karier",
+"ru": "Карьерные шаги"
+},
+"Field": {
+"en": "Field",
+"id": "Bidang",
+"ru": "Сфера"
+},
+"Level": {
+"en": "Level",
+"id": "Level",
+"ru": "Уровень"
+},
+"Posted": {
+"en": "Posted",
+"id": "Tayang",
+"ru": "Дата"
+},
+"Last 7 days": {
+"en": "Last 7 days",
+"id": "7 hari terakhir",
+"ru": "За 7 дней"
+},
+"Last 30 days": {
+"en": "Last 30 days",
+"id": "30 hari terakhir",
+"ru": "За 30 дней"
+},
+"Older": {
+"en": "Older",
+"id": "Lebih lama",
+"ru": "Раньше"
+},
+"Roles in view:": {
+"en": "Roles in view:",
+"id": "Peran yang tampil:",
+"ru": "Ролей на экране:"
+},
+"Roles matched to your CV:": {
+"en": "Roles matched to your CV:",
+"id": "Peran yang cocok dengan CV-mu:",
+"ru": "Ролей под твой опыт:"
+},
+"Not sure which roles fit your experience, or whether you should apply? We've already done that.": {
+"en": "Not sure which roles fit your experience, or whether you should apply? We've already done that.",
+"id": "Tidak yakin peran mana yang cocok dengan pengalamanmu, atau apakah kamu harus melamar? Kami sudah memeriksanya.",
+"ru": "Сомневаешься, какие роли подходят твоему опыту и стоит ли откликаться? Мы уже это разобрали."
+},
+"Open more roles": {
+"en": "Open more roles",
+"id": "Buka peran lainnya",
+"ru": "Открыть ещё вакансии"
+},
+"The closest open roles.": {
+"en": "The closest open roles.",
+"id": "Peran terbuka yang paling dekat.",
+"ru": "Самые близкие открытые роли."
+},
+"Salary not listed": {
+"en": "Salary not listed",
+"id": "Gaji tidak ditulis",
+"ru": "Зарплата не указана"
+},
+"One of the roles for you": {
+"en": "One of the roles for you",
+"id": "Salah satu peran untukmu",
+"ru": "Одна из ролей для тебя"
+},
+"Fits.": {
+"en": "Fits.",
+"id": "Cocok.",
+"ru": "Подходит."
+},
+"At Era Bangun you sold fiber and wholesale, and you still deliver B2S and colocation sites.": {
+"en": "At Era Bangun you sold fiber and wholesale, and you still deliver B2S and colocation sites.",
+"id": "Di Era Bangun kamu menjual fiber dan wholesale, dan sekarang kamu menyerahkan situs B2S serta colocation.",
+"ru": "В Era Bangun у тебя продажи fiber и wholesale, а сейчас ты сдаёшь площадки B2S и colocation."
+},
+"Does not match.": {
+"en": "Does not match.",
+"id": "Tidak cocok.",
+"ru": "Не совпадает."
+},
+"This seat leads a national tower-leasing sales team, and your current title is Lead Project Manager.": {
+"en": "This seat leads a national tower-leasing sales team, and your current title is Lead Project Manager.",
+"id": "Posisi ini memimpin tim sales sewa menara secara nasional, sedangkan jabatanmu sekarang Lead Project Manager.",
+"ru": "Здесь нужно вести национальную команду продаж аренды вышек, а в резюме сейчас Lead Project Manager."
+},
+"How close.": {
+"en": "How close.",
+"id": "Seberapa dekat.",
+"ru": "Насколько близко."
+},
+"The products are tower leasing, colocation, fiber, and ISP, and the office is in South Tangerang.": {
+"en": "The products are tower leasing, colocation, fiber, and ISP, and the office is in South Tangerang.",
+"id": "Produknya sewa menara, colocation, fiber, dan ISP, dan kantornya di Tangerang Selatan.",
+"ru": "Продукты те же: аренда вышек, colocation, fiber и ISP, офис в Южном Тангеранге."
+},
+"Next step.": {
+"en": "Next step.",
+"id": "Langkah berikut.",
+"ru": "Что делать."
+},
+"Apply on JobStreet. The ad stays open until 24 October 2026.": {
+"en": "Apply on JobStreet. The ad stays open until 24 October 2026.",
+"id": "Lamar di JobStreet. Iklan ini masih dibuka sampai 24 Oktober 2026.",
+"ru": "Откликнись на JobStreet. Объявление открыто до 24 октября 2026."
+},
+"Contacts": {
+"en": "Contacts",
+"id": "Kontak",
+"ru": "Контакты"
+},
+"24 September 2026 · checked 22 Oct": {
+"en": "24 September 2026 · checked 22 Oct",
+"id": "24 September 2026 · dicek 22 Okt",
+"ru": "24 сентября 2026 · проверено 22 окт"
+},
+"Apply →": {
+"en": "Apply →",
+"id": "Lamar →",
+"ru": "Откликнуться →"
+},
+"Opens JobStreet": {
+"en": "Opens JobStreet",
+"id": "Membuka JobStreet",
+"ru": "Открывает JobStreet"
+},
+"You will find your best job with our team.": {
+"en": "You will find your best job with our team.",
+"id": "Kamu akan menemukan pekerjaan terbaik bersama tim kami.",
+"ru": "Ты найдёшь лучшую работу вместе с нашей командой."
+},
+"We put our full experience into reading your CV": {
+"en": "We put our full experience into reading your CV",
+"id": "Kami memakai seluruh pengalaman kami untuk membaca CV-mu",
+"ru": "Мы вложили весь наш опыт в разбор твоего резюме"
+},
+"We went through your background, role by role": {
+"en": "We went through your background, role by role",
+"id": "Kami menelusuri pengalamanmu, peran demi peran",
+"ru": "Мы разобрали твой опыт по каждой роли"
+},
+"We worked out what your skills actually cover": {
+"en": "We worked out what your skills actually cover",
+"id": "Kami memetakan apa yang benar-benar tercakup skill-mu",
+"ru": "Мы разобрали, что на самом деле покрывают твои навыки"
+},
+"We kept only the roles that are still open": {
+"en": "We kept only the roles that are still open",
+"id": "Kami hanya menyimpan peran yang masih terbuka",
+"ru": "Мы оставили только открытые вакансии"
+},
+"We sorted them into your city, a relocation, or remote": {
+"en": "We sorted them into your city, a relocation, or remote",
+"id": "Kami mengelompokkannya: kotamu, pindah, atau jarak jauh",
+"ru": "Мы разложили их: твой город, переезд или удалёнка"
+},
+"We noted what fits, and where to apply, on each one": {
+"en": "We noted what fits, and where to apply, on each one",
+"id": "Di setiap peran kami tulis apa yang cocok dan ke mana melamar",
+"ru": "На каждой роли написано, что совпадает и куда откликаться"
+},
+"Get new roles before other candidates do": {
+"en": "Get new roles before other candidates do",
+"id": "Dapatkan peran baru lebih dulu dari kandidat lain",
+"ru": "Получай новые роли раньше других кандидатов"
+}
+}</script>
+
+<script>
+(function(){
+  const DICT = JSON.parse(document.getElementById('i18n-dict').textContent);
+  const fallback = document.body.dataset.lang || 'en';
+  const names = {en:'English (US)', id:'Bahasa Indonesia', ru:'Русский'};
+  const flags = {en:'us', id:'id', ru:'ru'};
+  const order = ['en','id','ru'];
+  const nodes = [];
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  let node;
+  while ((node = walker.nextNode())) {
+    if (!node.parentElement || node.parentElement.closest('script, style, .lang-switch, .hero-sub, svg')) continue;
+    const raw = node.nodeValue;
+    const key = raw.trim();
+    if (!key || !DICT[key]) continue;
+    const at = raw.indexOf(key);
+    nodes.push({node, key, pre: raw.slice(0, at), post: raw.slice(at + key.length)});
+  }
+  const curBtn = document.getElementById('lang-current');
+  const menu = curBtn.nextElementSibling;
+  function paint(lang){
+    nodes.forEach(item => { item.node.nodeValue = item.pre + (DICT[item.key][lang] || item.key) + item.post; });
+    curBtn.querySelector('.lang-label').textContent = names[lang];
+    curBtn.querySelector('.lang-flag').dataset.flag = flags[lang];
+    document.documentElement.lang = lang;
+    menu.innerHTML = order.filter(x => x !== lang).map(x =>
+      '<button type="button" data-set-lang="'+x+'"><span class="lang-flag" data-flag="'+flags[x]+'" aria-hidden="true"></span>'+names[x]+'</button>'
+    ).join('');
+    menu.querySelectorAll('[data-set-lang]').forEach(b => b.addEventListener('click', () => { apply(b.dataset.setLang); menu.hidden = true; }));
+    try { localStorage.setItem('bth-lang2-' + (document.body.dataset.person||'board'), lang); } catch (e) {}
+  }
+  function apply(lang){ document.body.dataset.lang = lang; paint(lang); }
+  curBtn.addEventListener('click', () => { menu.hidden = !menu.hidden; });
+  document.addEventListener('click', (e) => { if (!e.target.closest('.lang-switch')) menu.hidden = true; });
+  let saved = fallback;
+  try { saved = localStorage.getItem('bth-lang2-' + (document.body.dataset.person||'board')) || fallback; } catch (e) {}
+  apply(saved);
+})();
+</script>
+
+</body></html>

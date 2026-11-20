@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Роли · Ivan · Bali Talent Hunters</title>
+<link rel="icon" href="mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --white: #ffffff;
+  --bg: #F6F1E8;
+  --text: #141414;
+  --text2: #3A3832;
+  --muted: #6E6A62;
+  --border: #E6DFD4;
+  --lime: #CBEF1F;
+  --lime-deep: #B6D90F;
+  --forest: #1E2C1A;
+  --ink: #141414;
+  --cream: #F6F1E8;
+  --pink: #E7F5A8;
+  --pink2: #CBEF1F;
+  --pink3: #1E2C1A;
+  --pink-deep: #141414;
+  --pink-bg: #F4F8D4;
+  --blue: #1E2C1A;
+  --blue-bg: #EEF2E4;
+  --green: #1E2C1A;
+  --green-bg: #F4F8D4;
+  --orange: #8A5A12;
+  --orange-bg: #F8EBD4;
+  --purple: #3D4A32;
+  --purple-bg: #EEF2E4;
+  --red: #8E2F24;
+  --shadow: 0 10px 28px rgba(30,44,26,.08), 0 2px 6px rgba(20,20,20,.04);
+  --radius: 18px;
+  --radius-sm: 12px;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+.shell { max-width: 1060px; margin: 0 auto; padding: 0 24px 80px; }
+.hero { background: #fff; }
+.hero-inner { padding: 36px 0 8px; }
+.kicker { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--pink3); }
+.hero-name { font-size: 40px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.1; margin-top: 8px; }
+.hero-sub { font-size: 18px; font-weight: 600; margin-top: 10px; }
+.hero-links { margin-top: 10px; font-size: 13.5px; color: var(--muted); }
+.hero-links span { color: #cfcbc4; margin: 0 8px; }
+.live-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 20px;
+  background: var(--pink-bg);
+  border: 1px solid #c9e4de;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px; color: var(--pink-deep); font-weight: 500;
+}
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pink3); }
+.toc-wrap {
+  position: fixed; right: 10px; top: 50%; transform: translateY(-50%);
+  z-index: 80; padding: 16px 6px;
+}
+.toc-wrap::before { content: ''; position: absolute; right: 0; top: -8px; bottom: -8px; width: 36px; }
+.toc-wrap:hover::before { width: 300px; }
+.toc-dots { display: flex; flex-direction: column; gap: 9px; align-items: flex-end; }
+.toc-dot { width: 12px; height: 2px; border-radius: 1px; background: #d3d1cb; transition: width .15s, background .15s; }
+.toc-dot.active { width: 18px; background: #37352f; }
+.toc {
+  position: absolute; right: 28px; top: 50%; transform: translateY(-50%) translateX(8px);
+  width: 240px; background: #fff; border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(15,15,15,.12), 0 0 0 1px rgba(55,53,47,.08);
+  padding: 8px; opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .12s, transform .12s, visibility .12s;
+}
+.toc-wrap:hover .toc, .toc-wrap:focus-within .toc {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(-50%) translateX(0);
+}
+.toc a { display: block; font-size: 13px; color: var(--muted); padding: 6px 10px; border-radius: 6px; line-height: 1.35; }
+.toc a:hover { background: #f7f6f3; color: var(--text); }
+.toc a.active { background: #f1f1ef; color: var(--blue); font-weight: 500; }
+.filters {
+  display: flex; flex-direction: column; gap: 8px;
+  margin: 28px 0 8px; padding: 16px 0;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
+}
+.filter-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.filter-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .6px; color: var(--muted); width: 92px; flex-shrink: 0;
+}
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 12.5px; color: var(--text2); font-weight: 500;
+  cursor: pointer; transition: all .15s; user-select: none;
+}
+.pill:hover { border-color: var(--pink3); color: var(--pink-deep); }
+.pill.active { background: var(--text); border-color: var(--text); color: #fff; }
+.pill-cnt {
+  background: rgba(255,255,255,.2); border-radius: 10px;
+  padding: 0 6px; font-size: 11px; font-weight: 700; min-width: 18px; text-align: center;
+}
+.pill:not(.active) .pill-cnt { background: #f1f1ef; color: var(--muted); }
+.results-bar { font-size: 13px; color: var(--muted); margin: 18px 0 8px; }
+.results-bar strong { color: var(--text); }
+.section { margin: 36px 0 48px; scroll-margin-top: 220px; }
+.section.hidden { display: none; }
+.section-title { font-size: 24px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 6px; }
+.section-sub { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+.review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.review-card {
+  background: #fafafa; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px;
+}
+.review-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.review-card p, .review-card li { font-size: 13.5px; color: var(--text2); line-height: 1.6; }
+.review-card ul { padding-left: 16px; }
+.review-card.yes { background: #f4fbf8; border-color: #cde8df; }
+.review-card.warn { background: #fffaf2; border-color: #f3e2c4; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 16px; }
+.card {
+  background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px 22px 18px; display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  transition: box-shadow .2s, transform .2s, border-color .2s;
+}
+.card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--card-accent, var(--pink3));
+}
+.card:hover { box-shadow: var(--shadow); transform: translateY(-1px); border-color: #d5e6e2; }
+.card.hidden { display: none; }
+.card-top { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; padding-right: 48px; }
+.logo {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; background: var(--pink-bg); flex-shrink: 0;
+}
+.card-title { font-size: 16px; font-weight: 700; line-height: 1.3; }
+.card-company { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.match { position: absolute; top: 16px; right: 18px; font-size: 12px; font-weight: 700; color: var(--green); }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.tag { border-radius: 6px; padding: 2px 9px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+.tag-remote { background: var(--green-bg); color: var(--green); }
+.tag-office { background: var(--orange-bg); color: var(--orange); }
+.tag-level-h { background: var(--pink-bg); color: var(--pink-deep); }
+.tag-level-l { background: var(--purple-bg); color: var(--purple); }
+.tag-level-m { background: var(--blue-bg); color: var(--blue); }
+.tag-ind { background: #f7f6f3; color: var(--text2); }
+.tag-warn { background: var(--orange-bg); color: var(--orange); }
+.tag-bali { background: var(--pink-bg); color: var(--pink-deep); }
+.tag-inhouse { background: var(--green-bg); color: var(--green); }
+.location { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; }
+.desc { font-size: 13.5px; color: var(--text2); line-height: 1.65; margin-bottom: 12px; }
+.desc strong { color: var(--text); }
+.contacts-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .6px; color: var(--muted); margin-bottom: 6px;
+}
+.contacts { background: #fafafa; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; margin-bottom: 12px; }
+.contact-row { font-size: 12.5px; color: var(--text2); line-height: 1.55; margin-top: 2px; }
+.contact-row a { color: var(--blue); font-weight: 500; }
+.contact-row a:hover { text-decoration: underline; }
+.card-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 12px; border-top: 1px solid #f1f1ef; gap: 10px; margin-top: auto;
+}
+.post-date { font-size: 12px; color: var(--muted); }
+.btn {
+  display: inline-flex; align-items: center;
+  background: var(--pink3); color: #fff;
+  border-radius: 10px; padding: 8px 16px;
+  font-size: 13px; font-weight: 600;
+}
+.btn:hover { opacity: .88; }
+.sources-group-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted); margin: 22px 0 10px;
+}
+.sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.source-card {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 14px 16px; background: #fafafa;
+  border-radius: 12px; border: 1px solid var(--border);
+}
+.source-card:hover { border-color: var(--pink2); }
+.source-name { font-size: 13px; font-weight: 600; }
+.source-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.no-results { display: none; text-align: center; padding: 64px 20px; color: var(--muted); }
+.no-results.show { display: block; }
+@media (max-width: 980px) {
+  .toc-wrap { display: none; }
+  .grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .hero-name { font-size: 32px; }
+  .review-grid { grid-template-columns: 1fr; }
+  .filter-label { width: auto; }
+}
+
+.hero-note { margin-top: 14px; max-width: 640px; font-size: 14.5px; line-height: 1.5; color: var(--text2); }
+.fit { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.fit p { font-size: 13.5px; color: var(--text2); line-height: 1.55; margin: 0; }
+.fit strong { color: var(--text); font-weight: 600; }
+.apply-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.apply-kind { font-size: 11px; color: var(--muted); text-align: right; line-height: 1.3; }
+
+.brand { display: inline-flex; align-items: center; margin-bottom: 18px; }
+.brand img { height: 48px; width: auto; display: block; }
+body { font-family: Montserrat, Inter, ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); }
+.hero { background: transparent; }
+.match { background: var(--lime); color: var(--ink); border-radius: 999px; padding: 2px 8px; line-height: 1.45; }
+.btn { background: var(--forest); color: #fff; }
+.btn:hover { background: var(--lime); color: var(--ink); opacity: 1; }
+.pill.active { background: var(--ink); border-color: var(--ink); color: var(--lime); }
+.pill:hover { border-color: var(--ink); color: var(--ink); }
+.pill:not(.active) .pill-cnt { background: #EFE8DC; color: var(--muted); }
+.filters { background: rgba(246,241,232,.94); }
+.card:hover { border-color: #D7E39A; }
+.card::after { background: var(--lime); }
+.live-badge { background: var(--lime); border-color: #DCEB73; color: var(--ink); }
+.dot { background: var(--ink); }
+.hero-name { letter-spacing: -1.4px; }
+.tag-ind { background: #F3EEE6; }
+.contacts { background: #FBF8F3; }
+.brand-foot {
+  margin-top: 28px; background: var(--forest); color: #F6F1E8;
+  border-radius: 20px; padding: 26px 28px;
+  display: flex; align-items: center; gap: 16px;
+}
+.brand-foot img { height: 46px; width: 46px; display: block; }
+.brand-foot-name { font-weight: 800; font-size: 20px; letter-spacing: -.4px; color: #F6F1E8; line-height: 1.1; }
+.brand-foot-name span { color: var(--lime); }
+.brand-foot p { font-size: 14px; color: #E4EFE0; margin-top: 4px; }
+@media (max-width: 720px) {
+  .brand img { height: 36px; }
+  .brand-foot { align-items: flex-start; }
+}
+
+.job-reach a { color: var(--forest); font-weight: 600; }
+.brand-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; }
+.brand-links a { color: var(--lime); font-size: 14px; font-weight: 700; }
+.brand-links a:hover { text-decoration: underline; }
+
+.card.is-free {
+  grid-column: 1 / -1;
+  border: 1.5px solid #CBEF1F;
+  box-shadow: 0 22px 50px rgba(30,44,26,.12);
+}
+.open-flag {
+  display: inline-flex;
+  width: fit-content;
+  margin: -4px 0 14px;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+.card.is-locked { position: relative; }
+.card.is-locked > * {
+  filter: blur(6px);
+  opacity: .72;
+  user-select: none;
+  pointer-events: none;
+}
+.card.is-locked:hover { transform: none; box-shadow: none; border-color: var(--border); }
+.unlock {
+  grid-column: 1 / -1;
+  margin: 6px 0 2px;
+  z-index: 5;
+}
+.unlock-card {
+  background: #fff;
+  border: 1px solid #E6DFD4;
+  border-radius: 24px;
+  padding: 32px 28px 26px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(20,20,20,.08);
+}
+.unlock-kicker {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+.unlock-card h3 {
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -.7px;
+  margin: 14px 0 8px;
+}
+.unlock-card p { max-width: 460px; margin: 0 auto; color: var(--text2); font-size: 15.5px; }
+.unlock-btn {
+  margin-top: 18px;
+  background: var(--ink);
+  color: var(--lime);
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 22px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.unlock-btn:hover { background: var(--forest); }
+.gate { position: fixed; inset: 0; z-index: 120; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.gate[hidden] { display: none; }
+.gate-backdrop { position: absolute; inset: 0; background: rgba(20,20,20,.5); backdrop-filter: blur(8px); }
+.gate-card {
+  position: relative;
+  width: min(520px, 100%);
+  background: #fff;
+  border-radius: 28px;
+  padding: 22px 36px 28px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.22);
+}
+.gate-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 28px; right: 28px; height: 4px;
+  background: var(--lime);
+  border-radius: 0 0 6px 6px;
+}
+.gate-logo { height: 40px; width: auto; display: block; margin: 8px auto 26px; }
+.gate-card h2 { font-size: 32px; line-height: 1.12; letter-spacing: -.8px; margin: 10px 0 12px; }
+.gate-card > p { color: var(--text2); font-size: 16px; }
+.gate-points { list-style: none; margin: 18px 0 22px; display: flex; flex-direction: column; gap: 8px; }
+.gate-points li { font-size: 14.5px; font-weight: 600; padding-left: 22px; position: relative; }
+.gate-points li::before { content: ''; position: absolute; left: 0; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--lime); }
+.gate-go {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  background: var(--ink); color: var(--lime);
+  border-radius: 14px; padding: 14px 18px;
+  font-size: 16px; font-weight: 700;
+}
+.gate-go:hover { background: var(--forest); }
+.gate-note { margin-top: 10px; text-align: center; font-size: 12.5px; color: var(--muted); }
+.gate-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0;
+}
+.gate-close svg { width: 16px; height: 16px; display: block; }
+.gate-close:hover { background: var(--lime-deep); }
+@media (max-width: 720px) {
+  .unlock-card h3, .gate-card h2 { font-size: 26px; }
+  .gate-card { padding: 28px 20px 22px; }
+}
+
+.lang-switch { position: fixed; top: 16px; right: 16px; z-index: 70; }
+.lang-current {
+  display: flex; align-items: center; gap: 8px;
+  background: #fff; border: 1px solid #E6DFD4; border-radius: 999px;
+  padding: 5px 12px 5px 5px;
+  font: inherit; font-size: 13px; font-weight: 700; color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(30,44,26,.1);
+}
+.lang-flag {
+  width: 20px; height: 20px; border-radius: 50%;
+  flex-shrink: 0; display: inline-block;
+  background-size: cover; background-position: center;
+  box-shadow: inset 0 0 0 1px rgba(20,20,20,.15);
+}
+.lang-flag[data-flag="us"] { background-image: url("https://flagcdn.com/w80/us.png"); }
+.lang-flag[data-flag="id"] { background-image: url("https://flagcdn.com/w80/id.png"); }
+.lang-flag[data-flag="ru"] { background-image: url("https://flagcdn.com/w80/ru.png"); }
+.lang-menu {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  min-width: 210px;
+  background: #fff; border: 1px solid #E6DFD4; border-radius: 16px;
+  padding: 6px; box-shadow: 0 16px 40px rgba(20,20,20,.12);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.lang-menu[hidden] { display: none; }
+.lang-menu button {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; border: 0; background: transparent; border-radius: 12px;
+  padding: 8px 10px; font: inherit; font-size: 13px; font-weight: 700;
+  color: var(--ink); cursor: pointer; text-align: left;
+}
+.lang-menu button:hover { background: #F6F1E8; }
+@media (max-width: 720px) {
+  .lang-switch { top: 10px; right: 10px; }
+  .lang-current { font-size: 12px; }
+}
+</style>
+</head>
+<body data-person="ivan-ld" data-lang="ru">
+<div class="shell">
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <a class="brand" href="#top" aria-label="Bali Talent Hunters"><img src="logo.png" alt="Bali Talent Hunters"></a>
+    <div class="hero-name">Ivan</div>
+    <div class="hero-sub">Lead Level Designer / Senior Level Designer</div>
+    <div class="hero-links">Санкт-Петербург в резюме<span>|</span>8 лет левел-дизайна<span>|</span>FPS, PvP, World War Heroes</div>
+    <p class="hero-note">Сначала роли левел-дизайнера. Потом смежные: боевые системы и левел-арт. В «Других странах» — офисы вне России и Кипра и удалёнка, которая в первые пять фильтров не попала.</p>
+    <div class="live-badge"><div class="dot"></div>Обновлено 19 ноября 2026</div>
+  </div>
+</header>
+<div class="filters">
+  <div class="filter-row">
+    <span class="filter-label">Где</span>
+    <button class="pill active" data-f="geo" data-v="all">Все <span class="pill-cnt" id="m-all">10</span></button>
+    <button class="pill" data-f="geo" data-v="ru">Офис в России <span class="pill-cnt" id="m-ru">0</span></button>
+    <button class="pill" data-f="geo" data-v="cy">Офис на Кипре <span class="pill-cnt" id="m-cy">0</span></button>
+    <button class="pill" data-f="geo" data-v="rru">Удалёнка, компания РФ <span class="pill-cnt" id="m-rru">0</span></button>
+    <button class="pill" data-f="geo" data-v="rcy">Удалёнка, компания на Кипре <span class="pill-cnt" id="m-rcy">0</span></button>
+    <button class="pill" data-f="geo" data-v="rany">Удалёнка, русскоязычная компания <span class="pill-cnt" id="m-rany">0</span></button>
+    <button class="pill" data-f="geo" data-v="other">Другие страны <span class="pill-cnt" id="m-other">0</span></button>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Совпадение</span>
+    <button class="pill active" data-f="track" data-v="all">Все <span class="pill-cnt" id="m-track-all">10</span></button>
+    <button class="pill" data-f="track" data-v="best">Лучшие совпадения <span class="pill-cnt" id="m-best">0</span></button>
+    <button class="pill" data-f="track" data-v="alt">Смежные роли <span class="pill-cnt" id="m-alt">0</span></button>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Сфера</span>
+    <button class="pill active" data-f="ind" data-v="all">Все</button>
+    <button class="pill" data-f="ind" data-v="games">Игры</button>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Уровень</span>
+    <button class="pill active" data-f="level" data-v="all">Все</button>
+    <button class="pill" data-f="level" data-v="lead">Руководитель</button>
+    <button class="pill" data-f="level" data-v="mid">Специалист</button>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Дата</span>
+    <button class="pill active" data-f="posted" data-v="all">Все</button>
+    <button class="pill" data-f="posted" data-v="7d">За 7 дней</button>
+    <button class="pill" data-f="posted" data-v="30d">За 30 дней</button>
+    <button class="pill" data-f="posted" data-v="older">Раньше</button>
+  </div>
+</div>
+<div class="results-bar">Ролей на экране: <strong id="total">20</strong></div>
+
+<section class="section" id="best">
+  <h2 class="section-title">Лучшие совпадения</h2>
+  <p class="section-sub">Левел-дизайн: карты, блокаут, шутер или open-world. Открывай их первыми.</p>
+  <div class="grid">
+<div class="card" data-track="best" data-geo="other" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-19" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">85%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Senior Level Designer</div>
+    <div class="card-company">Леста Игры · Минск · офис</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-bali">Офис</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Офис в Минске, только на месте работодателя. Опыт больше 6 лет. Новый проект. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Ты задаёшь стандарты карт, пишешь документацию и учишь левел-дизайнеров. Здесь то же: принципы левел-дизайна на всю игру, прототипы, база знаний для команды.</p>
+    <p><strong>Не совпадает.</strong> Это офис в Минске, не в России и не удалёнка. Должность старший, не Lead. Вилки нет.</p>
+    <p><strong>Насколько близко.</strong> Самая близкая роль по содержанию после MadOut. Мешает город.</p>
+    <p><strong>Что делать.</strong> Откликайся, если готов к офису в Минске.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://lesta.games/" target="_blank">Леста Игры</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">19 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/138477000" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+<div class="card" data-track="best" data-geo="other" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-19" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">82%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Level Designer в «Мир танков»</div>
+    <div class="card-company">Леста Игры · Минск · офис</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-bali">Офис</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Офис в Минске. Опыт 3–6 лет. Карты «Мира танков» от концепта и вайтбокса до релиза. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Полный цикл карты, плейтесты, баланс и соревновательное разнообразие. Твои PvP-карты на World War Heroes — тот же тип работы.</p>
+    <p><strong>Не совпадает.</strong> Офис в Минске. В тексте написано, что роль усиливает арт-команду, хотя задачи — дизайн карт, не модели. Это не руководящая должность.</p>
+    <p><strong>Насколько близко.</strong> Прямой левел-дизайн на живом шутере. Другая страна.</p>
+    <p><strong>Что делать.</strong> Откликайся вместе со старшей ролью Лесты, если Минск подходит. Это другой проект той же студии.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://lesta.games/" target="_blank">Леста Игры</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">19 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/137705181" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+<div class="card" data-track="best" data-geo="rany" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-16" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">80%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Level Designer</div>
+    <div class="card-company">Axelbolt · Сербия · удалённо</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">ТОО Акселболт Казахстан. В карточке город Сербия, формат удалённо. Мобильный шутер в открытом мире на Unity. Опыт в объявлении 1–3 года. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Локации шутера на Unity: блокаут, город, маршруты, ритм и навигация. Это твой движок и твой жанр.</p>
+    <p><strong>Не совпадает.</strong> Просят 1–3 года, ты сильно выше. Вторая вакансия той же компании: старшая сидит на Алматы. Вилки нет.</p>
+    <p><strong>Насколько близко.</strong> Та же профессия, уровень объявления ниже твоего.</p>
+    <p><strong>Что делать.</strong> Откликайся на старшую в Алматы первой. Эту оставь, если готовы взять человека сильнее запрошенного уровня.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/139524418" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">16 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/139524418" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+<div class="card" data-track="best" data-geo="other" data-lang="en" data-ind="games" data-level="mid" data-posted="2026-10-29" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">76%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Senior Level Designer - RPG</div>
+    <div class="card-company">Homa · удалённо · Европа</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Одна удалённая позиция на несколько стран. Штаб в Париже. Берут в часовых поясах от UTC до UTC+3. Уровни гибрид-казуальной RPG в Unity. Текст на английском. На LinkedIn 19 ноября стояло «3 недели назад».</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Ты целиком ведёшь левел-дизайн: схемы, энкаунтеры, темп, сложность, спецификации. Здесь то же, плюс свой редактор уровней.</p>
+    <p><strong>Не совпадает.</strong> Компания не русскоязычная, жанр не шутер, английский каждый день. Владивосток — UTC+10, в их диапазон не входит. Санкт-Петербург — UTC+3, по тексту проходит. Вилки нет.</p>
+    <p><strong>Насколько близко.</strong> Прямой левел-дизайн. Другой язык команды и другой жанр.</p>
+    <p><strong>Что делать.</strong> Откликайся, если живёшь в поясе до UTC+3 и готов писать по-английски.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://www.linkedin.com/jobs/view/4483555160" target="_blank">Homa на LinkedIn</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">около 29 октября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://www.linkedin.com/jobs/view/4483555160" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает LinkedIn</span></div>
+  </div>
+</div>
+<div class="card" data-track="best" data-geo="other" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-10-30" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">74%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Game/Level Designer</div>
+    <div class="card-company">Игро Тэк · Минск · офис</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-bali">Офис</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Офис в Минске, присутствие обязательное. Опыт в объявлении 1–3 года, берут и новичков. PvE и PvP локации для мультиплеера. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Концепты PvE и PvP локаций, левел-дизайн, документация и прототипы механик. Это твоя работа.</p>
+    <p><strong>Не совпадает.</strong> Офис в Минске. Уровень объявления ниже твоего лида: они прямо пишут, что открыты для новичков.</p>
+    <p><strong>Насколько близко.</strong> Та же профессия, младше по планке и в другом городе.</p>
+    <p><strong>Что делать.</strong> Имеет смысл, только если Минск подходит и не смущает более младшая планка.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/136712017" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">30 октября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/136712017" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+<div class="card" data-track="best" data-geo="rany" data-lang="ru" data-ind="games" data-level="lead" data-posted="2026-11-18" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">86%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Lead Level Designer</div>
+    <div class="card-company">MadOut Games · удалённо · русскоязычная компания</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-l">Руководитель</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">В объявлении город Москва, формат — удалённо. Юрлицо ТОО MadOut Games, текст на русском. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Ты уже Lead Level Designer: нанимаешь, ведёшь пайплайн блокаутов и карты для PvP. Здесь то же самое — руководитель левел-дизайна MadOut2, open-world на Unity, ревью локаций и стандарты блокаута.</p>
+    <p><strong>Не совпадает.</strong> Просят опыт open-world, а твои выпущенные карты — арены шутера World War Heroes, не город с панельками. В объявлении нет вилки.</p>
+    <p><strong>Насколько близко.</strong> Прямое совпадение по должности и по Unity. Другой тип пространства.</p>
+    <p><strong>Что делать.</strong> Откликайся первым. В сопроводительном покажи карты и то, как ты вёл команду.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/employer/5685015" target="_blank">MadOut Games на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">18 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/138423491" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+
+<div class="card" data-track="best" data-geo="rru" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-17" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">84%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Level Designer</div>
+    <div class="card-company">EXBO · Санкт-Петербург · удалённо, компания РФ</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">ООО Эксбо Север, Санкт-Петербург. Формат удалённый, график 5/2. Игра STALZONE, MMOFPS. Вилка не указана. Будет тестовое.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Нужны блокауты, схемы, PvP, шутеры, документация и связка с другими отделами. Это твоя ежедневная работа на World War Heroes: карты, спавн, плейтесты.</p>
+    <p><strong>Не совпадает.</strong> Должность не руководящая: ты сейчас лид, а ищут левел-дизайнера в команду. Свой редактор уровней, Unity и Unreal только для отдельных задач.</p>
+    <p><strong>Насколько близко.</strong> Та же работа, на ступень без найма людей.</p>
+    <p><strong>Что делать.</strong> Откликайся с портфолио. Без портфолио отклики не смотрят.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/employer/3106292" target="_blank">EXBO на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">17 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/139014079" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+
+<div class="card" data-track="best" data-geo="rany" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-05" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">82%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Senior Level Designer</div>
+    <div class="card-company">Saber Interactive · Санкт-Петербург · удалённо</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Удалённо, полная занятость, 5/2. Команда в Санкт-Петербурге, студия международная, текст вакансии на русском. AAA-шутер от первого лица на Unreal. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Владение картами, боевые пространства, маршруты, навигация, укрытия и спавн. У тебя пять новых PvP-карт и переработки на шутере.</p>
+    <p><strong>Не совпадает.</strong> Нужен разговорный английский, у тебя B1. Движок в вакансии — Unreal, твой коммерческий пайплайн — Unity на Last Level. Это не роль лида.</p>
+    <p><strong>Насколько близко.</strong> Прямое совпадение по шутерным картам. Английский и Unreal — пробел, его надо назвать сразу.</p>
+    <p><strong>Что делать.</strong> Откликайся, если готов показать FPS-портфолио и говорить с командой по-английски.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/employer/314182" target="_blank">Saber Interactive на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">5 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/138206006" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+
+<div class="card" data-track="best" data-geo="rany" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-10-23" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">80%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Senior Level Designer</div>
+    <div class="card-company">Axelbolt · Алматы · удалённо или офис</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">ТОО Акселболт Казахстан. В объявлении Алматы, форматы: офис, удалённо и гибрид. Карты от концепта до релиза: блокаут, плейтесты, итерации. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Старший левел-дизайнер, полный цикл карты. Это твой уровень: не джун и не чистый арт.</p>
+    <p><strong>Не совпадает.</strong> Офис, если выбирать его, в Алматы, не в России и не на Кипре. В тексте рядом с левел-дизайном описан отдел 3D-окружения, так что часть работы может быть ближе к арту. Вилки нет.</p>
+    <p><strong>Насколько близко.</strong> Та же профессия. Гео — русскоязычная компания, не российское юрлицо.</p>
+    <p><strong>Что делать.</strong> Откликайся и в первом сообщении спроси, можно ли полностью удалённо из России.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/138521767" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">23 октября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/138521767" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+
+<div class="card" data-track="best" data-geo="rany" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-10-30" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">78%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Level Designer (PC/Console, UE5)</div>
+    <div class="card-company">Nekki · удалённо · в объявлении Ереван</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Nekki Limited. Формат удалённо, город в карточке — Ереван. Проект SPINE: шутер с огнестрельным боем на Unreal Engine 5, PC и консоли. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Нужен левел-дизайнер на шутер. У тебя выпущенные PvP-карты и документация по спавну и физике окружения.</p>
+    <p><strong>Не совпадает.</strong> Текст вакансии на английском, движок UE5. Твой коммерческий левел-дизайн — мобильный Unity. Город в объявлении Ереван, не Кипр и не Россия.</p>
+    <p><strong>Насколько близко.</strong> Та же роль на другом движке и в другом юрлице.</p>
+    <p><strong>Что делать.</strong> Откликайся с портфолио шутерных карт и коротко напиши, что UE5 для тебя новый движок.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/139002594" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">30 октября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/139002594" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+
+  </div>
+</section>
+<section class="section" id="alt">
+  <h2 class="section-title">Смежные роли</h2>
+  <p class="section-sub">Бой, энкаунтеры и левел-арт. На карточке написан пробел.</p>
+  <div class="grid">
+<div class="card" data-track="alt" data-geo="rru" data-lang="en" data-ind="games" data-level="mid" data-posted="2026-11-16" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">70%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Level Artist</div>
+    <div class="card-company">Gamemod · удалённо · компания РФ</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">ООО ГеймМод. Удалённо, в карточке Минск. Кооп на PC и консоли, Unreal. Опыт 3–6 лет. Текст на английском. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Полный цикл локации, и блокаут они делают вместе с геймдизайнером. Ты как раз делаешь этот блокаут.</p>
+    <p><strong>Не совпадает.</strong> Дальше идёт свет, цвет и художественная сборка. Это левел-арт, не дизайн карт. Нужен Unreal и английский.</p>
+    <p><strong>Насколько близко.</strong> Смежная роль рядом с твоим блокаутом.</p>
+    <p><strong>Что делать.</strong> Откликайся, если есть картинки готовых локаций, не только схемы.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/139536951" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">16 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/139536951" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+<div class="card" data-track="alt" data-geo="other" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-14" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">56%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Level Designer (Word Games)</div>
+    <div class="card-company">OpenMyGame · Минск · офис, удалёнка или гибрид</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Город Минск. Форматы: офис, удалённо и гибрид. Словесная казуалка «Филворды». Опыт 1–3 года. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> В названии левел-дизайнер: уровни, метрики, переработка слабых уровней.</p>
+    <p><strong>Не совпадает.</strong> Это слова и словари, не пространство шутера. Уровень младше твоего. Нужен интерес к словесным механикам.</p>
+    <p><strong>Насколько близко.</strong> Та же должность, другая профессия внутри неё.</p>
+    <p><strong>Что делать.</strong> Пропусти, если не хочешь уйти из шутеров в головоломки.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/134273310" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">14 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/134273310" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+<div class="card" data-track="alt" data-geo="rru" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-10-26" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">64%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Level Artist (UE5)</div>
+    <div class="card-company">101XP · Москва · удалённо</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Удалённо, Москва. ПК-проект, карта открытого мира на Unreal Engine 5. Опыт от двух лет. Без портфолио не смотрят. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Открытый мир и точки интереса. Ты проектируешь такие пространства.</p>
+    <p><strong>Не совпадает.</strong> Задачи — художественное оформление, свет и эффекты, не геймплей карты. Нужен коммерческий UE и портфолио картинок.</p>
+    <p><strong>Насколько близко.</strong> Смежный арт к твоим картам.</p>
+    <p><strong>Что делать.</strong> Откликайся только с визуальным портфолио локаций.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/138839448" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">26 октября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/138839448" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+<div class="card" data-track="alt" data-geo="ru" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-10-27" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">60%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Level Artist</div>
+    <div class="card-company">TRACE studio · Санкт-Петербург · офис или гибрид</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-bali">Офис в России</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Санкт-Петербург. Формат в объявлении начинается с офиса, есть и гибрид. Арт для чужих игр: Call of Duty, Baldur's Gate 3, Ghost of Tsushima. Опыт 1–3 года. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Это оформление игровых локаций, и офис в России.</p>
+    <p><strong>Не совпадает.</strong> Ты проектируешь геймплей карты, они просят визуальный пасс на финальной стадии. Уровень ниже твоего лида.</p>
+    <p><strong>Насколько близко.</strong> Смежный арт. Сильные чужие проекты, не своя игра.</p>
+    <p><strong>Что делать.</strong> Имеет смысл, только если готов к арту в Петербурге.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/138021775" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">27 октября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/138021775" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+<div class="card" data-track="alt" data-geo="ru" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-11" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">58%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Level Artist</div>
+    <div class="card-company">Форвард · Новосибирск · офис</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-bali">Офис в России</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Офис в Новосибирске. Город для автосимулятора City Car Driving 2.0. Опыт 1–3 года. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Сборка городских локаций, и это офис в России.</p>
+    <p><strong>Не совпадает.</strong> Основная работа — 3D-модели и окружение тренажёра, не PvP-карты. Уровень ниже.</p>
+    <p><strong>Насколько близко.</strong> Смежный арт в другом жанре.</p>
+    <p><strong>Что делать.</strong> Откликайся только если готов к 3D и к Новосибирску.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/139303035" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">11 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/139303035" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+<div class="card" data-track="alt" data-geo="rany" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-18" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">76%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Combat / Encounter Designer</div>
+    <div class="card-company">Owlcat Games · удалённо или офис</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Страница студии открыта, кнопка отклика на месте. Опубликовано 18 ноября 2026. Unity, большой проект. Можно удалённо, из офиса или смешивать. Русский B2 обязателен. Вилка не указана. Город офиса на странице не назван.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Ты уже делал спавн, навигацию ботов и геймплей, завязанный на уровень. Здесь враги, энкаунтеры, поведение и прототипы на Unity.</p>
+    <p><strong>Не совпадает.</strong> Это не левел-дизайн карт, а дизайн боя и встреч. Просят выпущенную PC или консольную экшен-игру. Твои релизы — мобильные шутеры.</p>
+    <p><strong>Насколько близко.</strong> Смежная роль в той же студийной связке «уровень и бой».</p>
+    <p><strong>Что делать.</strong> Откликайся, если хочешь сдвинуться от карт к боевым системам. В письме покажи спавн и навигацию с World War Heroes.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://owlcat.games/" target="_blank">Owlcat Games</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">18 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://owlcat.games/careers/299" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает страницу Owlcat</span></div>
+  </div>
+</div>
+
+<div class="card" data-track="alt" data-geo="ru" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-17" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">74%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Senior Combat Game Designer</div>
+    <div class="card-company">Леста Игры · Санкт-Петербург · офис</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-bali">Офис в России</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Офис в Санкт-Петербурге, формат «на месте работодателя». Мир танков, Мир кораблей, Tanks Blitz. Вилка не указана. Та же роль есть на Хабр Карьере, это одно объявление.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Старший дизайнер боя в живой русской студии. Ты проектировал геймплей рядом с уровнем: физика, спавн, навигация ИИ.</p>
+    <p><strong>Не совпадает.</strong> Это не карты, а боевые системы. Формат только офис в Петербурге, удалёнки в этом объявлении нет.</p>
+    <p><strong>Насколько близко.</strong> Смежная роль. Единственный сильный офис в России, который сейчас открыт под твой опыт.</p>
+    <p><strong>Что делать.</strong> Откликайся, если готов работать из офиса в Петербурге.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://lesta.games/" target="_blank">Леста Игры</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">17 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/138711121" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+
+<div class="card" data-track="alt" data-geo="rcy" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-05" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">68%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Senior Game Designer</div>
+    <div class="card-company">Top App Games · Лимасол · удалённо или гибрид</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Город Лимасол. Форматы: удалённо и гибрид. Проект LUDUS, мобильный мерж-автобатлер. Текст на русском. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> Старший геймдизайнер: фичи от концепта до внедрения, документация, младшие дизайнеры, аналитика. Руководство людьми у тебя уже есть.</p>
+    <p><strong>Не совпадает.</strong> Это не левел-дизайн. Жанр — мерж, не шутер. Офис на Кипре в объявлении не обязателен: есть удалёнка и гибрид.</p>
+    <p><strong>Насколько близко.</strong> Смежная роль в кипрской русскоязычной студии. Другая профессия внутри геймдева.</p>
+    <p><strong>Что делать.</strong> Откликайся только если готов уйти из левел-дизайна в системный дизайн мержа.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/139158457" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">5 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/139158457" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+
+<div class="card" data-track="alt" data-geo="rru" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-16" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">66%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">3D Artist / Level Designer</div>
+    <div class="card-company">Сакаев Эдуард · Москва · удалённо</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-remote">Удалёнка</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">140–160 тыс. ₽ до вычета</span></div>
+  <div class="location">Удалённо, Москва. Шутер на Unreal Engine 5. В объявлении вилка 140 000–160 000 ₽ в месяц до вычета налогов.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> В задачах есть проектирование левел-дизайна в UE5, не только модели.</p>
+    <p><strong>Не совпадает.</strong> Первая обязанность — 3D-модели окружения, персонажей и техники. Нужны примеры моделей со сроками и опыт с нейросетями. Ты левел-дизайнер, не основной 3D-художник. Работодатель указан как частное лицо.</p>
+    <p><strong>Насколько близко.</strong> Смежная роль: арт плюс уровни, зарплата написана прямо.</p>
+    <p><strong>Что делать.</strong> Откликайся, только если есть портфолио моделей, не одних блокаутов.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/139549312" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">16 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/139549312" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+
+<div class="card" data-track="alt" data-geo="ru" data-lang="ru" data-ind="games" data-level="mid" data-posted="2026-11-04" data-type="inhouse" style="--card-accent:#CBEF1F">
+  <div class="match">60%</div>
+  <div class="card-top"><div class="logo">🎮</div><div>
+    <div class="card-title">Level Designer / Artist</div>
+    <div class="card-company">Парамонов Дмитрий · Саратов · офис</div>
+  </div></div>
+  <div class="tags"><span class="tag tag-inhouse">В компании</span><span class="tag tag-bali">Офис в России</span><span class="tag tag-level-m">Специалист</span><span class="tag tag-ind">Игры</span><span class="tag tag-warn">Вилка не указана</span></div>
+  <div class="location">Офис в центре Саратова, полный день. Проект The Emperor’s Own на Unreal, RPG. Опыт в объявлении 1–3 года. Вилка не указана.</div>
+  <div class="fit">
+    <p><strong>Подходит.</strong> В названии есть левел-дизайнер, и это офис в России.</p>
+    <p><strong>Не совпадает.</strong> По тексту это сборка локаций из ассетов, свет, материалы и пропы. Художественная работа, не проектирование PvP-карт. Уровень ниже твоего лида. Работодатель — частное лицо.</p>
+    <p><strong>Насколько близко.</strong> Слабое совпадение. На доске, потому что это редкий офис в России со словами level designer.</p>
+    <p><strong>Что делать.</strong> Имеет смысл только если принципиален офис в России и ты готов к арту.</p>
+  </div>
+  <div class="contacts"><div class="contacts-label">Контакты</div>
+    <div class="contact-row">🏢 <a class="link-company" href="https://hh.ru/vacancy/82351268" target="_blank">Вакансия на hh.ru</a></div>
+  </div>
+  <div class="card-foot">
+    <span class="post-date">4 ноября 2026 · проверено 19 нояб.</span>
+    <div class="apply-wrap"><a href="https://hh.ru/vacancy/82351268" target="_blank" class="btn">Откликнуться →</a><span class="apply-kind">Открывает hh.ru</span></div>
+  </div>
+</div>
+
+  </div>
+</section>
+<div class="no-results" id="no-results">В этом фильтре пусто.</div>
+<footer class="brand-foot">
+  <img src="mark.png" alt="">
+  <div>
+    <div class="brand-foot-name">Bali <span>Talent Hunters</span></div>
+    <p>You will find your best job with our team.</p>
+    <div class="brand-links">
+      <a href="https://wa.me/6288740556189" target="_blank">WhatsApp +62 887 4055 6189</a>
+      <a href="https://www.instagram.com/bali_talent_hunters" target="_blank">Instagram</a>
+      <a href="https://huntersbali.net/" target="_blank">huntersbali.net</a>
+    </div>
+  </div>
+</footer>
+</div>
+<aside class="toc-wrap" id="toc-wrap">
+  <div class="toc-dots" id="toc-dots"></div>
+  <nav class="toc" id="toc">
+    <a href="#best">Лучшие совпадения</a>
+    <a href="#alt">Смежные роли</a>
+  </nav>
+</aside>
+<script>
+const tocLinks = [...document.querySelectorAll('#toc a')];
+const dotsWrap = document.getElementById('toc-dots');
+tocLinks.forEach((a, i) => {
+  const d = document.createElement('span');
+  d.className = 'toc-dot' + (i === 0 ? ' active' : '');
+  dotsWrap.appendChild(d);
+});
+const tocDots = [...dotsWrap.querySelectorAll('.toc-dot')];
+const state = { geo:'all', ind:'all', level:'all', posted:'all', track:'all' };
+function daysAgo(iso){
+  if (!iso) return 9999;
+  const d = new Date(iso + 'T12:00:00');
+  return Math.floor((Date.now() - d) / 86400000);
+}
+function postedOk(iso, bucket){
+  if (bucket === 'all') return true;
+  const days = daysAgo(iso);
+  if (bucket === '7d') return days <= 7;
+  if (bucket === '30d') return days <= 30;
+  if (bucket === 'older') return days > 30;
+  return true;
+}
+function applyFilters(){
+  const cards = document.querySelectorAll('.card');
+  let total = 0;
+  cards.forEach(c => {
+    const ok =
+      (state.geo === 'all' || c.dataset.geo === state.geo) &&
+      (state.ind === 'all' || c.dataset.ind === state.ind) &&
+      (state.level === 'all' || c.dataset.level === state.level) &&
+      (state.track === 'all' || c.dataset.track === state.track) &&
+      postedOk(c.dataset.posted, state.posted);
+    c.classList.toggle('hidden', !ok);
+    if (ok) total++;
+  });
+  document.getElementById('total').textContent = total;
+  document.querySelectorAll('.section').forEach(sec => {
+    const hasCards = sec.querySelector('.card');
+    if (!hasCards) return;
+    const vis = sec.querySelectorAll('.card:not(.hidden)').length;
+    sec.classList.toggle('hidden', vis === 0);
+  });
+  document.getElementById('no-results').classList.toggle('show', total === 0);
+}
+document.querySelectorAll('[data-f]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const f = btn.dataset.f;
+    document.querySelectorAll('[data-f="'+f+'"]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state[f] = btn.dataset.v;
+    applyFilters();
+  });
+});
+function setCount(id, n){
+  const el = document.getElementById(id);
+  if (el) el.textContent = String(n);
+}
+const cards = document.querySelectorAll('.card');
+setCount('m-all', cards.length);
+setCount('m-track-all', cards.length);
+['ru','cy','rru','rcy','rany','other'].forEach(key => {
+  setCount('m-' + key, document.querySelectorAll('.card[data-geo="' + key + '"]').length);
+});
+['best','alt'].forEach(key => {
+  setCount('m-' + key, document.querySelectorAll('.card[data-track="' + key + '"]').length);
+});
+applyFilters();
+const ids = tocLinks.map(a => a.getAttribute('href')).filter(h => h && h.startsWith('#')).map(h => h.slice(1));
+const sections = ids.map(id => document.getElementById(id)).filter(Boolean);
+function setActive(id){
+  tocLinks.forEach((a, i) => {
+    const on = a.getAttribute('href') === '#' + id;
+    a.classList.toggle('active', on);
+    if (tocDots[i]) tocDots[i].classList.toggle('active', on);
+  });
+}
+window.addEventListener('scroll', () => {
+  let current = 'top';
+  const y = window.scrollY + 140;
+  sections.forEach(sec => { if (sec.offsetTop <= y) current = sec.id; });
+  setActive(current);
+}, { passive: true });
+</script>
+</body></html>
